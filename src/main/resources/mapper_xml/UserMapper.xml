@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lonxinwu.db.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.lonxinwu.db.domain.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="birthday" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="sex" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lonxinwu.db.domain.User">
+    insert into user (id, userName, birthday, 
+      sex, address)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lonxinwu.db.domain.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByPrimaryKey" parameterType="com.lonxinwu.db.domain.UserKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.lonxinwu.db.domain.User">
+    update user
+    set Select_priv = #{selectPriv,jdbcType=CHAR},
+      Insert_priv = #{insertPriv,jdbcType=CHAR},
+      Update_priv = #{updatePriv,jdbcType=CHAR},
+      Delete_priv = #{deletePriv,jdbcType=CHAR},
+      Create_priv = #{createPriv,jdbcType=CHAR},
+      Drop_priv = #{dropPriv,jdbcType=CHAR},
+      Reload_priv = #{reloadPriv,jdbcType=CHAR},
+      Shutdown_priv = #{shutdownPriv,jdbcType=CHAR},
+      Process_priv = #{processPriv,jdbcType=CHAR},
+      File_priv = #{filePriv,jdbcType=CHAR},
+      Grant_priv = #{grantPriv,jdbcType=CHAR},
+      References_priv = #{referencesPriv,jdbcType=CHAR},
+      Index_priv = #{indexPriv,jdbcType=CHAR},
+      Alter_priv = #{alterPriv,jdbcType=CHAR},
+      Show_db_priv = #{showDbPriv,jdbcType=CHAR},
+      Super_priv = #{superPriv,jdbcType=CHAR},
+      Create_tmp_table_priv = #{createTmpTablePriv,jdbcType=CHAR},
+      Lock_tables_priv = #{lockTablesPriv,jdbcType=CHAR},
+      Execute_priv = #{executePriv,jdbcType=CHAR},
+      Repl_slave_priv = #{replSlavePriv,jdbcType=CHAR},
+      Repl_client_priv = #{replClientPriv,jdbcType=CHAR},
+      Create_view_priv = #{createViewPriv,jdbcType=CHAR},
+      Show_view_priv = #{showViewPriv,jdbcType=CHAR},
+      Create_routine_priv = #{createRoutinePriv,jdbcType=CHAR},
+      Alter_routine_priv = #{alterRoutinePriv,jdbcType=CHAR},
+      Create_user_priv = #{createUserPriv,jdbcType=CHAR},
+      Event_priv = #{eventPriv,jdbcType=CHAR},
+      Trigger_priv = #{triggerPriv,jdbcType=CHAR},
+      Create_tablespace_priv = #{createTablespacePriv,jdbcType=CHAR},
+      ssl_type = #{sslType,jdbcType=CHAR},
+      max_questions = #{maxQuestions,jdbcType=INTEGER},
+      max_updates = #{maxUpdates,jdbcType=INTEGER},
+      max_connections = #{maxConnections,jdbcType=INTEGER},
+      max_user_connections = #{maxUserConnections,jdbcType=INTEGER},
+      plugin = #{plugin,jdbcType=CHAR},
+      password_expired = #{passwordExpired,jdbcType=CHAR},
+      password_last_changed = #{passwordLastChanged,jdbcType=TIMESTAMP},
+      password_lifetime = #{passwordLifetime,jdbcType=SMALLINT},
+      account_locked = #{accountLocked,jdbcType=CHAR},
+      Create_role_priv = #{createRolePriv,jdbcType=CHAR},
+      Drop_role_priv = #{dropRolePriv,jdbcType=CHAR},
+      Password_reuse_history = #{passwordReuseHistory,jdbcType=SMALLINT},
+      Password_reuse_time = #{passwordReuseTime,jdbcType=SMALLINT},
+      Password_require_current = #{passwordRequireCurrent,jdbcType=CHAR}
+    where Host = #{host,jdbcType=CHAR}
+      and User = #{user,jdbcType=CHAR}
+  </update>
+</mapper>
