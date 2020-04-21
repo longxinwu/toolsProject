@@ -13,6 +13,12 @@ public class ImgUtil {
         //createImage("Wangwangbo", new Font("宋体",Font.BOLD,60), new File("E:/b.png"), 300, 80);
         combineImage("E:/c.png");
     }
+
+    /**
+     * 将文字转换成图片
+     * @return
+     * @throws Exception
+     */
     public static BufferedImage createImage(String str, Font font, File outFile,Integer width,Integer height) throws Exception{
         // 创建图片
         BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
@@ -40,9 +46,6 @@ public class ImgUtil {
         System.out.println(fontLength);
         System.out.println("宽："+width);
         System.out.println("x的起点:"+x);
-//        for(int i=0;i<6;i++){
-//            graphics.drawString(str, i*680, y);
-//        }
         graphics.drawString(str,0,y);
         graphics.dispose();
         image.flush();
@@ -51,6 +54,10 @@ public class ImgUtil {
         return image;
     }
 
+    /**
+     * 合并图片
+     * @param imgPath
+     */
     public static void combineImage(String imgPath){
         try{
             BufferedImage back = new BufferedImage(400, 100,BufferedImage.TYPE_INT_RGB);
@@ -82,28 +89,13 @@ public class ImgUtil {
         return null;
     }
 
-    public BufferedImage modifyImagetogeter(BufferedImage b, BufferedImage d) {
-        Graphics2D g = null;
-        try {
-            int w = b.getWidth();
-            int h = b.getHeight();
-            g = d.createGraphics();
-            g.drawImage(b, 300, -800, w, h, null);
-            g.dispose();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        return d;
-    }
-
     /**
      * 生成新图片到本地
      */
-    public void writeImageLocal(String newImage, BufferedImage img) {
-        if (newImage != null && img != null) {
+    public void writeImageLocal(String imgPath, BufferedImage img) {
+        if (imgPath != null && img != null) {
             try {
-                File outputfile = new File(newImage);
+                File outputfile = new File(imgPath);
                 ImageIO.write(img, "jpg", outputfile);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -111,4 +103,19 @@ public class ImgUtil {
         }
     }
 
+    /**
+     * 拉伸图片，将图片拉伸成 newWidth newHeight的图片
+     * @param oldImg
+     * @param newWidth
+     * @param newHeight
+     * @return
+     */
+    public BufferedImage scaleImage(BufferedImage oldImg, int newWidth, int newHeight){
+        Image image = oldImg.getScaledInstance(newWidth, newHeight, Image.SCALE_REPLICATE);
+        BufferedImage newImg = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics grap = newImg.getGraphics();
+        grap.drawImage(image, 0 ,0, null);
+        grap.dispose();
+        return newImg;
+    }
 }
