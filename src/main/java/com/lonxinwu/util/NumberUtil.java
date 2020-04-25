@@ -17,5 +17,23 @@ public class NumberUtil {
         System.out.println(new DecimalFormat("000000.00").format(num));
         //取百分比
         System.out.println(new DecimalFormat("0.00%").format(num));
+
+        /**
+         * 扩展，如果是其他的数字会是下面的效果
+         */
+        double pi=12.34;
+        //整数
+        System.out.println(new DecimalFormat("6").format(pi));//612
+        System.out.println(new DecimalFormat("60").format(pi));//612
+        System.out.println(new DecimalFormat("06").format(pi));//126
+        System.out.println(new DecimalFormat("00600").format(pi));//00126
+        System.out.println(new DecimalFormat("#####60000").format(pi));//00126
+        //小数
+        System.out.println(new DecimalFormat(".6").format(pi));//12.6
+        System.out.println(new DecimalFormat(".06").format(pi));//12.36
+        System.out.println(new DecimalFormat(".60").format(pi));//12.36
+        System.out.println(new DecimalFormat(".0600").format(pi));//12.3406
+        System.out.println(new DecimalFormat(".6000").format(pi));//12.3406
+        System.out.println(new DecimalFormat(".600000##").format(pi));//12.340006
     }
 }
