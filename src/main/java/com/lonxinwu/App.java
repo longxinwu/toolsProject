@@ -14,6 +14,8 @@ public class App
         double dou = amt * 0.1;
         double num = amt-dou;
         System.out.println( String.valueOf(discount/100)+"----"+String.valueOf(dou/100)+"----"+(amt-dou)/100);*/
+        String url = "12343543qr";
+        System.out.println(url.contains("QR"));
 
     }
 }
