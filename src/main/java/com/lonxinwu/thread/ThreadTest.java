@@ -19,7 +19,7 @@ public class ThreadTest {
                     executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
         }
         executor.shutdown();*/
-        try{
+        /*try{
             int i =1;
             ServerSocket socket = new ServerSocket(8189);
             while(true){
@@ -32,7 +32,7 @@ public class ThreadTest {
             }
         }catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
     }
 
 }
